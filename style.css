@@ -1,0 +1,242 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  font-family: "Orbitron", sans-serif;
+}
+
+#background {
+  min-height: 100vh;
+  background-color: rgb(22, 22, 22);
+}
+
+@property --x {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --z {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 60;
+}
+
+@property --y {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes myanimation {
+  0% {
+    --x: 0;
+    --z: 60;
+    --y: 0deg;
+  }
+
+  83.33% {
+    --z: 360;
+  }
+  83.34% {
+    --z: 0;
+  }
+
+  100% {
+    --x: 360;
+    --z: 60;
+    --y: 360deg;
+  }
+}
+
+.rgb-background1 {
+  background: linear-gradient(
+    var(--y),
+    hsl(var(--x), 100%, 50%),
+    hsl(var(--z), 100%, 50%)
+  );
+  animation: myanimation 5s infinite;
+  animation-timing-function: linear;
+}
+
+#calculator {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem -0.1rem black;
+}
+
+#display {
+  background: orange;
+  box-shadow: 0 0 1rem -0.2rem black inset;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+#display p {
+  text-align: right;
+  margin: 0;
+  padding: 0 0.1rem;
+  min-height: 1.5rem;
+}
+
+:root {
+  --top-display-width: 22rem;
+  --btn-size: calc(var(--top-display-width) / 4);
+}
+
+#display-top {
+  font-size: 1rem;
+  width: var(--top-display-width);
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+#display-top::before {
+  content: "0";
+  visibility: hidden;
+}
+
+#display-top::-webkit-scrollbar {
+  background: transparent;
+}
+
+#display-top::-webkit-scrollbar-button:single-button {
+  background: red;
+  background-size: 1rem;
+  background-repeat: no-repeat;
+}
+
+#display-top::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  background-color: transparent;
+  height: 1rem;
+  width: 1rem;
+  background-position: -0.3rem 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(22, 22, 22)'><polygon points='100,0 50,50 100,100'/></svg>");
+}
+
+#display-top::-webkit-scrollbar-button:single-button:horizontal:increment {
+  background-color: transparent;
+  height: 1rem;
+  width: 1rem;
+  background-position: -0.3rem 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(22, 22, 22)'><polygon points='50,0 100,50 50,100'/></svg>");
+}
+
+#display-top::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#display-top::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgb(22, 22, 22) 30% 70%,
+    transparent 70% 100%
+  );
+  height: 0.5rem;
+}
+
+#display-bottom {
+  font-size: 1.48rem;
+}
+
+#buttons {
+  display: grid;
+  grid-template:
+    "clear clear divide multiply" var(--btn-size)
+    "seven eight nine subtract" var(--btn-size)
+    "four five six add" var(--btn-size)
+    "one two three equals" var(--btn-size)
+    "zero zero decimal equals" var(--btn-size) / var(--btn-size) var(
+      --btn-size
+    ) var(--btn-size) var(--btn-size);
+}
+
+button {
+  font-size: 1.5rem;
+  border: 0.5rem solid white;
+  border-style: inset;
+  background-color: black;
+  color: white;
+  mix-blend-mode: multiply;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+#clear {
+  grid-area: clear;
+}
+
+#divide {
+  grid-area: divide;
+}
+
+#multiply {
+  grid-area: multiply;
+}
+
+#seven {
+  grid-area: seven;
+}
+
+#eight {
+  grid-area: eight;
+}
+
+#nine {
+  grid-area: nine;
+}
+
+#subtract {
+  grid-area: subtract;
+}
+
+#four {
+  grid-area: four;
+}
+
+#five {
+  grid-area: five;
+}
+
+#six {
+  grid-area: six;
+}
+
+#add {
+  grid-area: add;
+}
+
+#one {
+  grid-area: one;
+}
+
+#two {
+  grid-area: two;
+}
+
+#three {
+  grid-area: three;
+}
+
+#equals {
+  grid-area: equals;
+}
+
+#zero {
+  grid-area: zero;
+}
+
+#decimal {
+  grid-area: decimal;
+}
+
+@media (max-width: 450px) {
+  html, body {
+    font-size: 3.55vw;
+  }
+}
